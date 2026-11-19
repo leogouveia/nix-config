@@ -1,5 +1,41 @@
 {
   "nodes": {
+    "chatgpt-desktop": {
+      "inputs": {
+        "nixpkgs": "nixpkgs"
+      },
+      "locked": {
+        "lastModified": 1795059229,
+        "narHash": "sha256-YLEPunsHJIWSdtTiRbXtWNFWvGZYDeuUMUTmbKGVbdU=",
+        "owner": "csoftware-arigpt",
+        "repo": "nixos-chatgpt",
+        "rev": "b79da00458628e3f6bfb96b182ba1dff0478ab5f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "csoftware-arigpt",
+        "repo": "nixos-chatgpt",
+        "type": "github"
+      }
+    },
+    "claude-desktop": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_2"
+      },
+      "locked": {
+        "lastModified": 1794792225,
+        "narHash": "sha256-X6X7cWEfYFQsLvEymU4UxAqsKYasTOAPXzQU3f2k600=",
+        "owner": "danielbodart",
+        "repo": "claude-desktop",
+        "rev": "bf561af2d849ca175981d29a7b1f904eb0cd9279",
+        "type": "github"
+      },
+      "original": {
+        "owner": "danielbodart",
+        "repo": "claude-desktop",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -39,6 +75,38 @@
     },
     "nixpkgs": {
       "locked": {
+        "lastModified": 1786599213,
+        "narHash": "sha256-yNJd40f11EzXBjSByCB7IPpeFFAdeoSKKM67dGkfFoU=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "0e251e24a4f24e036a084b6b4b2d2491af4167f4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1794552581,
+        "narHash": "sha256-qXFIqA6FCcx7XeDzw0ZNlkDT9UiCzrNDwK8RuU8RcHM=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "f1e5c356f35d07e7b71a6b5e6c9338e0b029e0c0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-26.05",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_3": {
+      "locked": {
         "lastModified": 1794872590,
         "narHash": "sha256-E+XLAfnC7+bdr4qlEgRv6cdGmiqTU5oeFNKCha7epqQ=",
         "owner": "NixOS",
@@ -55,10 +123,63 @@
     },
     "root": {
       "inputs": {
+        "chatgpt-desktop": "chatgpt-desktop",
+        "claude-desktop": "claude-desktop",
         "home-manager": "home-manager",
         "nix-flatpak": "nix-flatpak",
-        "nixpkgs": "nixpkgs",
+        "nixpkgs": "nixpkgs_3",
+        "vscode-pkgs": "vscode-pkgs",
+        "vscodium-pkgs": "vscodium-pkgs",
+        "zed-pkgs": "zed-pkgs",
         "zen-browser": "zen-browser"
+      }
+    },
+    "vscode-pkgs": {
+      "locked": {
+        "lastModified": 1794890597,
+        "narHash": "sha256-lME2lHoDHAaSHP3/okgiVoJ0icVEvsQH8LeU3We7tcc=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "04906337b6d53e8bb0eaf0470ae9f070a4d4eb55",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "vscodium-pkgs": {
+      "locked": {
+        "lastModified": 1794890597,
+        "narHash": "sha256-lME2lHoDHAaSHP3/okgiVoJ0icVEvsQH8LeU3We7tcc=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "04906337b6d53e8bb0eaf0470ae9f070a4d4eb55",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "zed-pkgs": {
+      "locked": {
+        "lastModified": 1794890597,
+        "narHash": "sha256-lME2lHoDHAaSHP3/okgiVoJ0icVEvsQH8LeU3We7tcc=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "04906337b6d53e8bb0eaf0470ae9f070a4d4eb55",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
       }
     },
     "zen-browser": {

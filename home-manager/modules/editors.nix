@@ -1,26 +1,47 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
+let
+  system = pkgs.stdenv.hostPlatform.system;
+
+  vscodePkgs = import inputs.vscode-pkgs {
+    inherit system;
+    config.allowUnfree = true;
+  };
+
+  vscodiumPkgs = import inputs.vscodium-pkgs {
+    inherit system;
+  };
+
+  zedPkgs = import inputs.zed-pkgs {
+    inherit system;
+  };
+in
 {
   programs.vscode = {
     enable = true;
-    package = pkgs.vscode;
+    package = vscodePkgs.vscode;
   };
 
-  # Não adicionar o pacote ao ambiente combinado
+  # Não adicionar o VSCodium ao ambiente combinado
   programs.vscodium.enable = false;
 
   # Disponibilizar o VSCodium pelo menu do GNOME
   xdg.desktopEntries.vscodium = {
     name = "VSCodium";
     genericName = "Editor de código";
-    exec = "${pkgs.vscodium}/bin/codium %F";
+    exec = "${vscodiumPkgs.vscodium}/bin/codium %F";
     icon = "vscodium";
     terminal = false;
-    categories = [ "Development" "IDE" "TextEditor" ];
+    categories = [
+      "Development"
+      "IDE"
+      "TextEditor"
+    ];
   };
 
   programs.zed-editor = {
-    enable= true;
+    enable = true;
+    package = zedPkgs.zed-editor;
 
     extensions = [ "nix" ];
 
@@ -31,9 +52,11 @@
 
     userSettings = {
       languages.Nix = {
-
         # Somente o nixd como LSP
-        language_servers = [ "nixd" "!nil" ];
+        language_servers = [
+          "nixd"
+          "!nil"
+        ];
 
         # Formatação automática ao salvar
         format_on_save = "on";

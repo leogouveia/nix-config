@@ -31,10 +31,23 @@
 
     uninstallUnmanaged = false;
 
-    overrides.settings."com.spotify.Client".Context.sockets = [
-      "!wayland"
-      "x11"
-    ];
+    overrides.settings."com.spotify.Client" = {
+      Context = {
+        sockets = [
+          "!wayland"
+          "x11"
+        ];
+        unset-environment = [
+          "WAYLAND_DISPLAY"
+          "XDG_SESSION_TYPE"
+        ];
+      };
+
+      Environment = {
+        WAYLAND_DISPLAY = "";
+        XDG_SESSION_TYPE = "";
+      };
+    };
 
     update.auto = {
       enable = true;

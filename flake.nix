@@ -1,4 +1,3 @@
-
 {
   description = "Home Manager - Leonardo";
 
@@ -17,9 +16,20 @@
     };
 
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=v0.8.0";
+
+    chatgpt-desktop.url = "github:csoftware-arigpt/nixos-chatgpt";
+
+    claude-desktop.url = "github:danielbodart/claude-desktop";
+
+    zed-pkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+
+    vscode-pkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+
+    vscodium-pkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
   };
 
-  outputs = inputs@{ nixpkgs, home-manager, ... }:
+  outputs =
+    inputs@{ nixpkgs, home-manager, ... }:
     let
       system = "x86_64-linux";
 
@@ -29,18 +39,17 @@
       };
     in
     {
-      homeConfigurations.leogouveia =
-        home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
+      homeConfigurations.leogouveia = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
 
-          extraSpecialArgs = {
-            inherit inputs;
-          };
-
-          modules = [
-            inputs.nix-flatpak.homeManagerModules.nix-flatpak
-            ./home-manager/home.nix
-          ];
+        extraSpecialArgs = {
+          inherit inputs;
         };
+
+        modules = [
+          inputs.nix-flatpak.homeManagerModules.nix-flatpak
+          ./home-manager/home.nix
+        ];
+      };
     };
 }

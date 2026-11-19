@@ -2,13 +2,18 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # Permitir pacotes proprietários
   nixpkgs.config.allowUnfree = true;
@@ -24,10 +29,34 @@
   # Um lib.mkForce descarta essas definições automáticas; foi exatamente
   # isso que removeu x-initrd.mount de /nix e quebrou o initrd
   # ("Failed to start Find NixOS closure").
-  fileSystems."/".options = [ "compress=zstd" "noatime" ];
-  fileSystems."/home".options = [ "compress=zstd" "noatime" ];
-  fileSystems."/nix".options = [ "compress=zstd" "noatime" ];
-  fileSystems."/.snapshots".options = [ "compress=zstd" "noatime" ];
+  fileSystems."/".options = [
+    "compress=zstd"
+    "noatime"
+  ];
+  fileSystems."/home".options = [
+    "compress=zstd"
+    "noatime"
+  ];
+  fileSystems."/nix".options = [
+    "compress=zstd"
+    "noatime"
+  ];
+  fileSystems."/.snapshots".options = [
+    "compress=zstd"
+    "noatime"
+  ];
+
+  # Home do CachyOS, compartilhado entre os sistemas pelo subvolume Btrfs.
+  fileSystems."/mnt/cachyos-home" = {
+    device = "/dev/disk/by-uuid/e149652a-4f50-439f-b2a9-6b270f3e46a0";
+    fsType = "btrfs";
+    options = [
+      "subvol=@home"
+      "compress=zstd"
+      "noatime"
+      "nofail"
+    ];
+  };
 
   # Shell de resgate no initrd. Sem isto o /etc/shadow do initrd é
   # "root:*" e uma falha de initrd deixa a máquina sem nenhum acesso.
@@ -70,7 +99,7 @@
   time.timeZone = "America/Sao_Paulo";
 
   # Idioma e localização
-  i18n= {
+  i18n = {
     defaultLocale = "pt_BR.UTF-8";
     extraLocaleSettings = {
       LC_MESSAGES = "en_US.UTF-8";
@@ -88,16 +117,14 @@
   console = {
     font = "Lat2-Terminus16";
     useXkbConfig = true;
-  }; 
-  
+  };
+
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-
 
   # Enable the GNOME Desktop Environment.
   services.displayManager.gdm.enable = true;
   services.desktopManager.gnome.enable = true;
-  
 
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";
@@ -120,9 +147,7 @@
   };
 
   # ---------------------------------------------------------------- Bluetooth
-  hardware.bluetooth.enable = true;                # bluez, bluez-utils, bluez-obex...
-
-
+  hardware.bluetooth.enable = true; # bluez, bluez-utils, bluez-obex...
 
   # NVIDIA RTX 3080 Ti
   services.xserver.videoDrivers = [ "nvidia" ];
@@ -139,33 +164,24 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.libinput.enable = true;
 
-  # ---------------------------------------------------------------- Virtualização
-  virtualisation.libvirtd.enable = true;           # virt-manager (+ dnsmasq)
-  programs.virt-manager.enable = true;             # virt-manager
+  # irtualização
+  virtualisation.libvirtd.enable = true; # virt-manager (+ dnsmasq)
+  programs.virt-manager.enable = true; # virt-manager
   # Lembrete: adicionar o usuário ao grupo "libvirtd" na etapa de usuários.
   # APROVAÇÃO: VirtualBox (módulo próprio; conflita com KVM em uso simultâneo).
   # virtualisation.virtualbox.host.enable = true;   # virtualbox, virtualbox-host-dkms
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.leogouveia= {
+  users.users.leogouveia = {
     isNormalUser = true;
     description = "Leonardo";
-    extraGroups = [ "networkmanager" "wheel" "libvirtd" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "libvirtd"
+    ]; # Enable ‘sudo’ for the user.
     shell = pkgs.fish;
   };
-
-  programs.firefox.enable = true;
-  programs.vim.enable = true;
-  programs.zsh.enable = true;
-  programs.fish.enable = true;
-  services.flatpak.enable = true;
-
-  # List packages installed in system profile.
-  # You can use https://search.nixos.org/ to find more packages (and options).
-  # environment.systemPackages = with pkgs; [
-  #   vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #   wget
-  # ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -180,10 +196,10 @@
   # Enable the OpenSSH daemon.
   services.openssh = {
     enable = true;
- #   settings = {
- #     PasswordAuthentication = false;
- #     PermitRootLogin = "no";
- #   };
+    #   settings = {
+    #     PasswordAuthentication = false;
+    #     PermitRootLogin = "no";
+    #   };
   };
 
   # Open ports in the firewall.
@@ -215,7 +231,7 @@
   #
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
   system.stateVersion = "26.05"; # Did you read the comment?
-  
+
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
@@ -235,7 +251,9 @@
     '';
     mode = "0755";
   };
-  
+
+  # List packages installed in system profile.
+  # You can use https://search.nixos.org/ to find more packages (and options).
   # Ferramentas administrativas
   environment.systemPackages = with pkgs; [
     btrfs-progs
@@ -246,14 +264,18 @@
     ethtool
     pciutils
     lshw
+    gjs
   ];
 
   # Atualizações de firmware
   services.fwupd.enable = true;
+  programs.firefox.enable = true;
+  programs.vim.enable = true;
+  programs.zsh.enable = true;
+  programs.fish.enable = true;
+  services.flatpak.enable = true;
 
   # Suporte gráfico para aplicativos de 32 bits
   hardware.graphics.enable32Bit = true;
 
 }
-
-
