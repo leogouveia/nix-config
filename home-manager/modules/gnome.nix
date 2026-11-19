@@ -19,6 +19,12 @@
 
   gtk.enable = true;
 
+  # Tema GTK3/GTK4 — adw-gtk3 replica o visual do libadwaita em apps GTK3
+  gtk.theme = {
+    name = "adw-gtk3-dark";
+    package = pkgs.adw-gtk3;
+  };
+
   # Ícones
   gtk.iconTheme = {
     name = "Papirus";
@@ -40,6 +46,8 @@
       "org/gnome/desktop/interface" = {
           accent-color = "purple";
           icon-theme = "Papirus";
+          gtk-theme = "adw-gtk3-dark";
+          color-scheme = "prefer-dark";
         };
 
       "org/gnome/desktop/wm/preferences" = {
