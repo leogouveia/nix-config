@@ -51,12 +51,23 @@ in
     ];
 
     userSettings = {
+      agent_servers."Claude (Nix)" = {
+        type = "custom";
+        command = "${pkgs.claude-agent-acp}/bin/claude-agent-acp";
+        args = [ ];
+        env = {
+          CLAUDE_CODE_EXECUTABLE = "${pkgs.claude-code}/bin/claude";
+        };
+      };
+
       languages.Nix = {
         # Somente o nixd como LSP
         language_servers = [
           "nixd"
           "!nil"
         ];
+
+        lsp.nixd.binary.path = "${pkgs.nixd}/bin/nixd";
 
         # Formatação automática ao salvar
         format_on_save = "on";

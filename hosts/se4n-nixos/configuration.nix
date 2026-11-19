@@ -274,6 +274,7 @@
   programs.zsh.enable = true;
   programs.fish.enable = true;
   services.flatpak.enable = true;
+  programs.nix-ld.enable = true;
 
   # Suporte gráfico para aplicativos de 32 bits
   hardware.graphics.enable32Bit = true;
