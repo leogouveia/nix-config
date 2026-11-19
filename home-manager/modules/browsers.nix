@@ -10,4 +10,9 @@
         ];
       })
   ];
+
+  # O 1Password não grava sua própria entrada de autostart quando
+  # empacotado via Nix, então criamos a entrada XDG manualmente.
+  xdg.configFile."autostart/1password.desktop".source =
+    "${pkgs._1password-gui}/share/applications/1password.desktop";
 }
