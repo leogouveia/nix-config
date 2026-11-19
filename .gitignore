@@ -1,0 +1,9 @@
+result
+result-*
+*~
+*.swp
+*.bak
+.direnv/
+*.key
+*.pem
+.env
