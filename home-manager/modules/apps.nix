@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   home.packages = with pkgs; [
@@ -14,5 +14,6 @@
     rclone
     insync
     gnome-tweaks
+    inputs.artcraft-pkgs.packages.${pkgs.stdenv.hostPlatform.system}.photocraft
   ];
 }

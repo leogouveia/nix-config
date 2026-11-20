@@ -7,3 +7,4 @@ result-*
 *.key
 *.pem
 .env
+.claude

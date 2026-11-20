@@ -16,16 +16,15 @@
       "org.onlyoffice.desktopeditors"
       "com.github.marktext.marktext"
       "com.rtosta.zapzap"
+      "be.alexandervanhee.gradia"
 
       # Multimídia
       "io.github.celluloid_player.Celluloid"
       "de.haeckerfelix.Fragments"
       "com.spotify.Client"
 
-
       # Gerenciamento
       "com.github.tchx84.Flatseal"
-
 
     ];
 

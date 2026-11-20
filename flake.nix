@@ -26,6 +26,8 @@
     vscode-pkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     vscodium-pkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+
+    artcraft-pkgs.url = "github:Hy4ri/artcraft-flake";
   };
 
   outputs =

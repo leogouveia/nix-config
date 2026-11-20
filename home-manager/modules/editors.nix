@@ -51,6 +51,12 @@ in
     ];
 
     userSettings = {
+      agent_servers."Codex (Nix)" = {
+        type = "custom";
+        command = "${zedPkgs.codex-acp}/bin/codex-acp";
+        args = [ ];
+      };
+
       agent_servers."Claude (Nix)" = {
         type = "custom";
         command = "${pkgs.claude-agent-acp}/bin/claude-agent-acp";
