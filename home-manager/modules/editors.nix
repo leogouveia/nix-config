@@ -43,49 +43,20 @@ in
     enable = true;
     package = zedPkgs.zed-editor;
 
-    extensions = [ "nix" ];
+    extensions = [
+      "nix"
+      "lua"
+      "nvim-nightfox"
+      "material-icon-theme"
+      "catppuccin-icons"
+    ];
 
     extraPackages = with pkgs; [
       nixd
       nixfmt
+      ruff
     ];
 
-    userSettings = {
-      agent_servers."Codex (Nix)" = {
-        type = "custom";
-        command = "${zedPkgs.codex-acp}/bin/codex-acp";
-        args = [ ];
-      };
-
-      agent_servers."Claude (Nix)" = {
-        type = "custom";
-        command = "${pkgs.claude-agent-acp}/bin/claude-agent-acp";
-        args = [ ];
-        env = {
-          CLAUDE_CODE_EXECUTABLE = "${pkgs.claude-code}/bin/claude";
-        };
-      };
-
-      languages.Nix = {
-        # Somente o nixd como LSP
-        language_servers = [
-          "nixd"
-          "!nil"
-        ];
-
-        lsp.nixd.binary.path = "${pkgs.nixd}/bin/nixd";
-
-        # Formatação automática ao salvar
-        format_on_save = "on";
-
-        formatter.external = {
-          command = "${pkgs.nixfmt}/bin/nixfmt";
-          arguments = [ ];
-        };
-      };
-
-      # Usa explicitamente o nixd do NixOS
-      lsp.nixd.binary.path = "${pkgs.nixd}/bin/nixd";
-    };
+    userSettings = import ./zed-settings.nix { inherit pkgs zedPkgs; };
   };
 }
