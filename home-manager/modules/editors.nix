@@ -20,6 +20,9 @@ in
   programs.vscode = {
     enable = true;
     package = vscodePkgs.vscode;
+    profiles.default = (import ./vscode-settings.nix) // {
+      extensions = import ./vscode-extensions.nix vscodePkgs.vscode-extensions;
+    };
   };
 
   # Não adicionar o VSCodium ao ambiente combinado

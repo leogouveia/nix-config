@@ -1,0 +1,57 @@
+vscodeExtensions:
+
+with vscodeExtensions;
+[
+  alefragnani.project-manager
+  anthropic.claude-code
+  astro-build.astro-vscode
+  bradlc.vscode-tailwindcss
+  christian-kohler.npm-intellisense
+  christian-kohler.path-intellisense
+  codezombiech.gitignore
+  dart-code.dart-code
+  dbaeumer.vscode-eslint
+  denoland.vscode-deno
+  docker.docker
+  donjayamanne.githistory
+  eamodio.gitlens
+  editorconfig.editorconfig
+  esbenp.prettier-vscode
+  firefox-devtools.vscode-firefox-debug
+  firsttris.vscode-jest-runner
+  formulahendry.auto-close-tag
+  formulahendry.auto-rename-tag
+  github.github-vscode-theme
+  mechatroner.rainbow-csv
+  miguelsolorio.fluent-icons
+  ms-azuretools.vscode-containers
+  ms-azuretools.vscode-docker
+  ms-python.black-formatter
+  ms-python.debugpy
+  ms-python.python
+  ms-python.vscode-pylance
+  ms-python.vscode-python-envs
+  ms-vscode-remote.remote-containers
+  ms-vscode-remote.remote-ssh
+  ms-vscode-remote.remote-ssh-edit
+  ms-vscode-remote.remote-wsl
+  ms-vscode-remote.vscode-remote-extensionpack
+  ms-vscode.cmake-tools
+  ms-vscode.cpptools
+  ms-vscode.cpptools-extension-pack
+  ms-vscode.makefile-tools
+  ms-vscode.remote-explorer
+  pkief.material-icon-theme
+  quicktype.quicktype
+  rangav.vscode-thunder-client
+  redhat.vscode-xml
+  redhat.vscode-yaml
+  ritwickdey.liveserver
+  tamasfe.even-better-toml
+  teabyii.ayu
+  twxs.cmake
+  unifiedjs.vscode-mdx
+  vue.volar
+  yoavbls.pretty-ts-errors
+  zhuangtongfa.material-theme
+]
