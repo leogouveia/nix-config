@@ -28,6 +28,11 @@
     vscodium-pkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     artcraft-pkgs.url = "github:Hy4ri/artcraft-flake";
+
+    nix-updater = {
+      url = "github:leogouveia/nix-updater";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
