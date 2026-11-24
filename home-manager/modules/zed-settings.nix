@@ -137,6 +137,14 @@
         enable_thinking = true;
         effort = "high";
       }
+      {
+        provider = "mistral";
+        model = "mistral-small-latest";
+      }
+      {
+        provider = "copilot_chat";
+        model = "gpt-4.1";
+      }
     ];
     sandbox_permissions = {
       network_hosts = [
@@ -158,6 +166,19 @@
       position = "right";
       auto_open = false;
     };
+
+    commit_message_model = {
+      provider = "mistral";
+      model = "mistral-small-latest";
+    };
+    commit_message_instructions = ''
+      Use Conventional Commits.
+      Write commit messages in English.
+      Keep the subject under 72 characters.
+      Focus on what changed and why.
+      Include a body only when necessary.
+    '';
+
   };
   tab_bar = {
     show = true;

@@ -36,6 +36,10 @@
 
     ghostty-pkgs.url = "github:ghostty-org/ghostty";
 
+    gspotify-lab = {
+      url = "github:leogouveia/gspotify/main";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nix-updater = {
       url = "github:leogouveia/nix-updater";
       inputs.nixpkgs.follows = "nixpkgs";

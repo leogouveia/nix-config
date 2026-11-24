@@ -31,11 +31,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1795306023,
-        "narHash": "sha256-xN4plrxkiZr2dNS/3AXkXTSM7mp8qR+vsNRuy0wYOLM=",
+        "lastModified": 1795495075,
+        "narHash": "sha256-NfBjgXeZ0ZX3MEmHJ8V+8bRJrnrBg0ZTkP6n0fdRGUc=",
         "owner": "tadfisher",
         "repo": "android-nixpkgs",
-        "rev": "269c39fa7bc6ce24b3db00b46b3a79e78ccb302c",
+        "rev": "993acb8d8046ad0cf8e7bc9e7670271874beeddc",
         "type": "github"
       },
       "original": {
@@ -90,11 +90,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1795242264,
-        "narHash": "sha256-lqahScJmOdUdUDJyU7yJQvueilgz5IKKxRCMTeDvvxw=",
+        "lastModified": 1795481804,
+        "narHash": "sha256-Zx/e2PFd1PCuoulT/ogvlr+6XAvpceRAJQgIM9r1360=",
         "owner": "csoftware-arigpt",
         "repo": "nixos-chatgpt",
-        "rev": "335c65e0e3f7bde01798a51d42ee2dba92f9813c",
+        "rev": "86e981c040f395d77bb85a31c1554f2b1d95821c",
         "type": "github"
       },
       "original": {
@@ -186,16 +186,37 @@
         "zon2nix": "zon2nix"
       },
       "locked": {
-        "lastModified": 1795542927,
-        "narHash": "sha256-/l6pAeGSLe2+ttGl/GvJJzXdHP8rg6wPhuKeyQ42QAo=",
+        "lastModified": 1795544793,
+        "narHash": "sha256-T7kXlsILYZIBHzI7GjicMSYVryZhIqA/Qm3Y5Hui31Y=",
         "owner": "ghostty-org",
         "repo": "ghostty",
-        "rev": "573c4a21e02311ae87844af26b6a7a179f82858e",
+        "rev": "64a6fedfd26d1fa687733f9f411db5eb8e205ebe",
         "type": "github"
       },
       "original": {
         "owner": "ghostty-org",
         "repo": "ghostty",
+        "type": "github"
+      }
+    },
+    "gspotify-lab": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1795545923,
+        "narHash": "sha256-3Q+cj6ZNLUy5MuNCYi5KCqflmLIuCQ7W4nOym5QSevQ=",
+        "owner": "leogouveia",
+        "repo": "gspotify",
+        "rev": "d2a756b01323fa50469cb4eec4a6c2b047e6dba6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "leogouveia",
+        "ref": "main",
+        "repo": "gspotify",
         "type": "github"
       }
     },
@@ -341,11 +362,11 @@
     },
     "nixpkgs_5": {
       "locked": {
-        "lastModified": 1795258312,
-        "narHash": "sha256-IEuDsf80ubivfpidbRsIm30HVo7PZIdZt1stRsbaY4Y=",
+        "lastModified": 1795370043,
+        "narHash": "sha256-s/0jq8usZtLVOolYBwmyUmd3JsfAu7w3FU+a0dgMqSY=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "94c3211b0ee8ba969a3f12eb4aff8ba0f72971dd",
+        "rev": "0dc498bfe49baeb18b0f9891e800b53bb2603193",
         "type": "github"
       },
       "original": {
@@ -362,6 +383,7 @@
         "chatgpt-desktop": "chatgpt-desktop",
         "claude-desktop": "claude-desktop",
         "ghostty-pkgs": "ghostty-pkgs",
+        "gspotify-lab": "gspotify-lab",
         "home-manager": "home-manager_2",
         "nix-flatpak": "nix-flatpak",
         "nix-updater": "nix-updater",

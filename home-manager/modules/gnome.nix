@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   programs.gnome-shell = {
@@ -14,6 +14,9 @@
       { package = panel-date-format; }
       { package = tiling-assistant; }
       { package = user-themes; }
+      {
+        package = inputs.gspotify-lab.packages.${pkgs.stdenv.hostPlatform.system}.default;
+      }
     ];
   };
 
@@ -40,15 +43,18 @@
       };
 
       "org/gnome/shell/keybindings" = {
-        show-screenshot-ui = [ "Print" "<Super><Shift>s" ];
+        show-screenshot-ui = [
+          "Print"
+          "<Super><Shift>s"
+        ];
       };
 
       "org/gnome/desktop/interface" = {
-          accent-color = "purple";
-          icon-theme = "Papirus";
-          gtk-theme = "adw-gtk3-dark";
-          color-scheme = "prefer-dark";
-        };
+        accent-color = "purple";
+        icon-theme = "Papirus";
+        gtk-theme = "adw-gtk3-dark";
+        color-scheme = "prefer-dark";
+      };
 
       "org/gnome/desktop/wm/preferences" = {
         button-layout = "appmenu:minimize,close";
