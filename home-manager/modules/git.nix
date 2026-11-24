@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 
 {
   programs.git = {
@@ -28,7 +28,8 @@
   };
 
   # Chave pública da "GitHub SSH" do 1Password (não é segredo)
-  home.file.".ssh/github.pub".text = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPX5g6MxbipbOQoQ60GVT1AtZ6EkFV20UAXgSzwZ/H1L";
+  home.file.".ssh/github.pub".text =
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPX5g6MxbipbOQoQ60GVT1AtZ6EkFV20UAXgSzwZ/H1L";
 
   programs.gh = {
     enable = true;

@@ -12,7 +12,7 @@
   theme = {
     mode = "system";
     light = "One Light";
-    dark = "Carbonfox - blurred";
+    dark = "Nordfox - opaque";
   };
 
   # Tipografia do editor

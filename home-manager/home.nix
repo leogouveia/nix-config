@@ -17,6 +17,7 @@
     ./modules/flatpak.nix
     ./modules/claude-statusline.nix
     ./modules/nix-updater.nix
+    ./modules/android.nix
   ];
 
   home = {

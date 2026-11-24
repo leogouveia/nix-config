@@ -29,6 +29,13 @@
 
     artcraft-pkgs.url = "github:Hy4ri/artcraft-flake";
 
+    android-nixpkgs = {
+      url = "github:tadfisher/android-nixpkgs/stable";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    ghostty-pkgs.url = "github:ghostty-org/ghostty";
+
     nix-updater = {
       url = "github:leogouveia/nix-updater";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -36,13 +43,19 @@
   };
 
   outputs =
-    inputs@{ nixpkgs, home-manager, ... }:
+    inputs@{
+      nixpkgs,
+      home-manager,
+      android-nixpkgs,
+      ...
+    }:
     let
       system = "x86_64-linux";
 
       pkgs = import nixpkgs {
         inherit system;
         config.allowUnfree = true;
+        android_sdk.accept_license = true;
       };
     in
     {
