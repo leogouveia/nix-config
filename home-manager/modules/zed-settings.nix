@@ -138,8 +138,8 @@
         effort = "high";
       }
       {
-        provider = "mistral";
-        model = "mistral-small-latest";
+        provider = "opencode";
+        model = "deepseek-v4.1-flash-free";
       }
       {
         provider = "copilot_chat";
@@ -168,8 +168,8 @@
     };
 
     commit_message_model = {
-      provider = "mistral";
-      model = "mistral-small-latest";
+      provider = "opencode";
+      model = "deepseek-v4.1-flash-free";
     };
     commit_message_instructions = ''
       Use Conventional Commits.

@@ -86,6 +86,9 @@
           protocol: efi
           path: uuid(d52aed40-1dea-4fa0-a25c-a87e6b14b0f4):/EFI/cachyos/grubx64.efi
     '';
+    extraConfig = ''
+      remember_last_entry: yes
+    '';
   };
 
   boot.loader.efi.canTouchEfiVariables = true;
