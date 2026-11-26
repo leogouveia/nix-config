@@ -61,7 +61,7 @@
   # Shell de resgate no initrd. Sem isto o /etc/shadow do initrd é
   # "root:*" e uma falha de initrd deixa a máquina sem nenhum acesso.
   # Acesso não autenticado, exige acesso físico ao console.
-  boot.initrd.systemd.emergencyAccess = true;
+  # boot.initrd.systemd.emergencyAccess = true;
 
   # Limine EFI bootloader
   boot.loader.limine = {
