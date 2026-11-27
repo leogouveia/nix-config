@@ -267,6 +267,8 @@
     gjs
   ];
 
+  environment.gnome.excludePackages = [ pkgs.epiphany ];
+
   # Atualizações de firmware
   services.fwupd.enable = true;
   programs.firefox.enable = true;
