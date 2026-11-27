@@ -90,11 +90,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1795481804,
-        "narHash": "sha256-Zx/e2PFd1PCuoulT/ogvlr+6XAvpceRAJQgIM9r1360=",
+        "lastModified": 1795554980,
+        "narHash": "sha256-0fxPQE0SiI7IG3t2+uX07vFhTowODDvA5fVg03mFZ/k=",
         "owner": "csoftware-arigpt",
         "repo": "nixos-chatgpt",
-        "rev": "86e981c040f395d77bb85a31c1554f2b1d95821c",
+        "rev": "a7d40d2f999e214795c24d8802514874196a7d34",
         "type": "github"
       },
       "original": {

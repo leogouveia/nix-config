@@ -4,7 +4,6 @@
 
 {
   config,
-  lib,
   pkgs,
   ...
 }:
@@ -13,6 +12,8 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    ./modules/fhs-compat.nix
+    ./modules/fonts.nix
   ];
 
   # Permitir pacotes proprietários
@@ -47,21 +48,21 @@
   ];
 
   # Home do CachyOS, compartilhado entre os sistemas pelo subvolume Btrfs.
-  fileSystems."/mnt/cachyos-home" = {
-    device = "/dev/disk/by-uuid/e149652a-4f50-439f-b2a9-6b270f3e46a0";
-    fsType = "btrfs";
-    options = [
-      "subvol=@home"
-      "compress=zstd"
-      "noatime"
-      "nofail"
-    ];
-  };
+  #fileSystems."/mnt/cachyos-home" = {
+  #  device = "/dev/disk/by-uuid/e149652a-4f50-439f-b2a9-6b270f3e46a0";
+  #  fsType = "btrfs";
+  #  options = [
+  #    "subvol=@home"
+  #    "compress=zstd"
+  #    "noatime"
+  #    "nofail"
+  #  ];
+  #};
 
   # Shell de resgate no initrd. Sem isto o /etc/shadow do initrd é
   # "root:*" e uma falha de initrd deixa a máquina sem nenhum acesso.
   # Acesso não autenticado, exige acesso físico ao console.
-  # boot.initrd.systemd.emergencyAccess = true;
+  boot.initrd.systemd.emergencyAccess = true;
 
   # Limine EFI bootloader
   boot.loader.limine = {
@@ -81,10 +82,6 @@
       /Windows Boot Manager
           protocol: efi
           path: uuid(2c4e5de9-d219-444b-bbc2-5e9fe3ffe60d):/EFI/Microsoft/Boot/bootmgfw.efi
-
-      /CachyOS (GRUB)
-          protocol: efi
-          path: uuid(d52aed40-1dea-4fa0-a25c-a87e6b14b0f4):/EFI/cachyos/grubx64.efi
     '';
     extraConfig = ''
       remember_last_entry: yes
@@ -278,6 +275,47 @@
   programs.fish.enable = true;
   services.flatpak.enable = true;
   programs.nix-ld.enable = true;
+  programs.git.enable = true;
+
+  virtualisation.podman = {
+    enable = true;
+    dockerCompat = true;
+
+    defaultNetwork.settings = {
+      dns_enabled = true;
+    };
+  };
+
+  # Integração NVIDIA com containers
+  hardware.nvidia-container-toolkit = {
+    enable = true;
+
+    mounts = [
+      {
+        hostPath = "${pkgs.writeText "10_nvidia.json" (
+          builtins.toJSON {
+            file_format_version = "1.0.0";
+            ICD.library_path = "libEGL_nvidia.so.0";
+          }
+        )}";
+
+        containerPath = "/usr/share/glvnd/egl_vendor.d/10_nvidia.json";
+      }
+      {
+        hostPath = "${pkgs.writeText "nvidia_icd.json" (
+          builtins.toJSON {
+            file_format_version = "1.0.1";
+            ICD = {
+              library_path = "libGLX_nvidia.so.0";
+              api_version = "1.4.329";
+            };
+          }
+        )}";
+
+        containerPath = "/usr/share/vulkan/icd.d/nvidia_icd.json";
+      }
+    ];
+  };
 
   # Suporte gráfico para aplicativos de 32 bits
   hardware.graphics.enable32Bit = true;

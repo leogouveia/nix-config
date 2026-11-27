@@ -15,5 +15,6 @@
     insync
     gnome-tweaks
     inputs.artcraft-pkgs.packages.${pkgs.stdenv.hostPlatform.system}.photocraft
+    distrobox
   ];
 }

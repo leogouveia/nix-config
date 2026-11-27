@@ -93,6 +93,22 @@
     interactiveShellInit = ''
       set -g fish_greeting
     '';
+
+    functions = {
+      boxcreate = ''
+        if test (count $argv) -ne 2
+          echo "Uso: boxcreate <nome> <imagem>"
+          return 1
+        end
+
+        mkdir -p "$HOME/Distrobox/$argv[1]"
+
+        distrobox create \
+          --name "$argv[1]" \
+          --image "$argv[2]" \
+          --home "$HOME/Distrobox/$argv[1]"
+      '';
+    };
   };
 
   # ghostty settings

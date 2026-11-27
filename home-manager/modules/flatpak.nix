@@ -15,7 +15,6 @@
       "net.donnybeelo.Convey"
       "org.onlyoffice.desktopeditors"
       "com.github.marktext.marktext"
-      "com.rtosta.zapzap"
       "be.alexandervanhee.gradia"
 
       # Multimídia
@@ -25,6 +24,8 @@
 
       # Gerenciamento
       "com.github.tchx84.Flatseal"
+      "com.ranfdev.DistroShelf"
+      "org.gnome.World.PikaBackup"
 
     ];
 

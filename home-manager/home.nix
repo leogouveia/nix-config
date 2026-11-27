@@ -10,7 +10,6 @@
     ./modules/langs.nix
     ./modules/gnome.nix
     ./modules/terminals.nix
-    ./modules/fonts.nix
     ./modules/browsers.nix
     ./modules/apps.nix
     ./modules/multimedia.nix
