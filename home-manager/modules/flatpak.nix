@@ -16,6 +16,7 @@
       "org.onlyoffice.desktopeditors"
       "com.github.marktext.marktext"
       "be.alexandervanhee.gradia"
+      "io.github.tobagin.karere"
 
       # Multimídia
       "io.github.celluloid_player.Celluloid"
