@@ -6,7 +6,10 @@
 
     extensions = with pkgs.gnomeExtensions; [
       { package = appindicator; }
-      { package = blur-my-shell; }
+      {
+        package =
+          inputs.unstable-pkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system}.gnomeExtensions.blur-my-shell;
+      }
       { package = dash-to-dock; }
       { package = emoji-copy; }
       { package = gspotify; }

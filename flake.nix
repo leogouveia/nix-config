@@ -27,6 +27,8 @@
 
     vscodium-pkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
+    unstable-pkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+
     artcraft-pkgs.url = "github:Hy4ri/artcraft-flake";
 
     android-nixpkgs = {
