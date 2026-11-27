@@ -68,6 +68,7 @@ Se o Disko falhar depois de começar a escrever, inspecione a tabela de partiç�
 ```bash
 sudo nixos-generate-config --root /mnt
 sudo install -m 0644 hosts/se4n-nixos/configuration.nix /mnt/etc/nixos/configuration.nix
+sudo install -D -m 0644 -t /mnt/etc/nixos/modules hosts/se4n-nixos/modules/*.nix
 sudoedit /mnt/etc/nixos/configuration.nix
 ```
 
@@ -81,7 +82,7 @@ Revise os trechos específicos do host antes de instalar.
 
 A instalação UEFI registra o Limine no firmware, pois o host usa `boot.loader.efi.canTouchEfiVariables = true`. Em multiboot, confira a ordem de boot no firmware depois da instalação.
 
-## 5. Instalar e ativar o Home Manager
+## 5. Instalar e reiniciar
 
 Com as montagens em `/mnt` e a configuração revisada, execute
 
@@ -91,13 +92,6 @@ sudo nixos-enter --root /mnt -c 'passwd leogouveia'
 sudo reboot
 ```
 
-Inicialize pela ESP do novo disco. Entre como o usuário normal, obtenha o checkout em `~/nix-config` e aplique o perfil independente do Home Manager. Use a conta ajustada na etapa anterior, se for diferente.
-
-```bash
-git clone https://github.com/leogouveia/nix-config.git ~/nix-config
-nix run github:nix-community/home-manager/release-26.05 -- switch --flake ~/nix-config#leogouveia
-```
-
-Se o Git ainda não estiver disponível, use `nix-shell -p git` para obter o checkout. A atualização posterior do sistema usa `sudo nixos-rebuild switch` com a configuração em `/etc/nixos`.
+Inicialize pela ESP do novo disco e entre como usuário normal. Continue em [Primeiros passos no NixOS recém-instalado](primeiros-passos-nixos.md), começando pelo clone no seu diretório pessoal.
 
 Consulte também o [guia rápido e a referência do Disko](https://github.com/nix-community/disko/tree/v1.13.0/docs) e o [manual de instalação do NixOS](https://nixos.org/manual/nixos/stable/#sec-installation).
