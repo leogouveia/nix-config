@@ -139,8 +139,11 @@
   # services.xserver.xkb.layout = "us";
   # services.xserver.xkb.options = "eurosign:e,caps:escape";
 
-  # Enable CUPS to print documents.
-  # services.printing.enable = true;
+  # Impressão via CUPS — Epson EcoTank L3250 (ESC/P-R)
+  services.printing = {
+    enable = true;
+    drivers = [ pkgs.epson-escpr ];
+  };
 
   # Enable sound.
   # Áudio com PipeWire
@@ -267,6 +270,7 @@
   environment.systemPackages = with pkgs; [
     btrfs-progs
     smartmontools
+    system-config-printer
     usbutils
     dmidecode
     efibootmgr
