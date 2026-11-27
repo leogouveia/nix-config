@@ -1,4 +1,9 @@
-{ pkgs, inputs, ... }:
+{
+  pkgs,
+  inputs,
+  unstablePkgs,
+  ...
+}:
 
 {
   programs.gnome-shell = {
@@ -7,8 +12,7 @@
     extensions = with pkgs.gnomeExtensions; [
       { package = appindicator; }
       {
-        package =
-          inputs.unstable-pkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system}.gnomeExtensions.blur-my-shell;
+        package = unstablePkgs.gnomeExtensions.blur-my-shell;
       }
       { package = dash-to-dock; }
       { package = emoji-copy; }

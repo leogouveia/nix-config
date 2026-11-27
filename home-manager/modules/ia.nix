@@ -1,28 +1,33 @@
-{ pkgs, inputs, ... }:
+{
+  pkgs,
+  unstablePkgs,
+  inputs,
+  ...
+}:
 
 {
   home.packages = with pkgs; [
     # Anthropic Claude Code
-    claude-code
+    unstablePkgs.claude-code
 
     # GitHub Copilot CLI
-    github-copilot-cli
+    unstablePkgs.github-copilot-cli
 
     # OpenCode
-    opencode
+    unstablePkgs.opencode
     # opencode-desktop
 
     # OpenAI Codex CLI
-    codex
+    unstablePkgs.codex
 
     # llmfit
     llmfit
 
     # Chatgpt desktop
-    inputs.chatgpt-desktop.packages.${pkgs.system}.default
+    inputs.chatgpt-desktop.packages.${pkgs.stdenv.hostPlatform.system}.default
 
     # Claude Desktop
-    inputs.claude-desktop.packages.${pkgs.system}.default
+    inputs.claude-desktop.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
   programs.claude-statusline.enable = true;
 }

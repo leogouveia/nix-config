@@ -63,13 +63,18 @@
         config.allowUnfree = true;
         android_sdk.accept_license = true;
       };
+
+      unstablePkgs = import inputs.unstable-pkgs {
+        inherit system;
+        config.allowUnfree = true;
+      };
     in
     {
       homeConfigurations.leogouveia = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
 
         extraSpecialArgs = {
-          inherit inputs;
+          inherit inputs unstablePkgs;
         };
 
         modules = [
