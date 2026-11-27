@@ -97,6 +97,14 @@ O `git fetch` verifica o acesso de leitura pelo novo remote. Para publicar alter
 
 ## 7. Validações opcionais
 
+### Partição de backups
+
+O host `se4n-nixos` monta a partição ext4 `se4n-lx-bk` em `/mnt/se4n-lx-bk` durante o boot. A configuração usa o UUID da partição e permite que o sistema inicie caso o disco esteja ausente.
+
+- [ ] Após reiniciar, conferir a montagem com `findmnt --mountpoint /mnt/se4n-lx-bk`.
+- [ ] Conferir se o volume aparece na barra lateral do Arquivos (Nautilus). A opção `x-gvfs-show` torna visível a montagem em `/mnt`.
+- [ ] No Pika Backup, selecionar o repositório existente pelo caminho dentro de `/mnt/se4n-lx-bk`. Se o Pika estava configurado com o caminho anterior em `/run/media`, selecionar o mesmo repositório pelo novo caminho.
+
 ### Fontes
 
 - [ ] Verificar as fontes instaladas pelo sistema e as montagens de compatibilidade FHS.

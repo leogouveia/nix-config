@@ -133,7 +133,7 @@
       # gtk-toolbar-style = "flat";
 
       # Transparência
-      background-opacity = 0.98;
+      background-opacity = 0.90;
       background-blur = true;
 
       # Cursor

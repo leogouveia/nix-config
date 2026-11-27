@@ -47,6 +47,15 @@
     "noatime"
   ];
 
+  fileSystems."/mnt/se4n-lx-bk" = {
+    device = "/dev/disk/by-uuid/268c6603-7107-4fa6-b08f-143f42efaa7d";
+    fsType = "ext4";
+    options = [
+      "nofail"
+      "x-gvfs-show"
+    ];
+  };
+
   # Home do CachyOS, compartilhado entre os sistemas pelo subvolume Btrfs.
   #fileSystems."/mnt/cachyos-home" = {
   #  device = "/dev/disk/by-uuid/e149652a-4f50-439f-b2a9-6b270f3e46a0";
