@@ -44,6 +44,9 @@
     # Flatpak
     fpupdate = "flatpak update --user";
 
+    # Atualiza a grade de aplicativos do GNOME
+    appsrefresh = "mkdir -p ~/.local/share/applications && touch ~/.local/share/applications/.refresh.desktop && rm ~/.local/share/applications/.refresh.desktop";
+
   };
 
   # Zsh

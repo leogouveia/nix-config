@@ -5,6 +5,7 @@
     celluloid
     decibels
     showtime
+    spotdl
     vlc
   ];
 }
