@@ -2,10 +2,7 @@
 
 {
   # Emuladores de terminal
-  home.packages = with pkgs; [
-    ptyxis
-    inputs.ghostty-pkgs.packages.${pkgs.system}.default
-  ];
+  home.packages = [ pkgs.ptyxis ];
 
   home.shellAliases = {
     ez = "SUDO_EDITOR='zeditor --wait' sudoedit";
@@ -114,40 +111,9 @@
     };
   };
 
-  # ghostty settings
+  # O yadm gerencia ~/.config/ghostty/config.
   programs.ghostty = {
     enable = true;
     package = inputs.ghostty-pkgs.packages.${pkgs.stdenv.hostPlatform.system}.default;
-
-    settings = {
-      # Aparência
-      theme = "Catppuccin Mocha";
-      window-theme = "system";
-
-      # Tipografia
-      font-family = "JetBrainsMono Nerd Font";
-      font-size = 12.5;
-
-      # Janela
-      window-padding-x = 12;
-      window-padding-y = 10;
-      window-padding-balance = true;
-      # gtk-titlebar-style = "tabs";
-      # gtk-toolbar-style = "flat";
-
-      # Transparência
-      background-opacity = 0.90;
-      background-blur = true;
-
-      # Cursor
-      cursor-style = "bar";
-      cursor-style-blink = false;
-
-      # Integração
-      shell-integration = "fish";
-
-      # Histórico
-      scrollback-limit = 10000000;
-    };
   };
 }

@@ -14,9 +14,9 @@
     ./modules/apps.nix
     ./modules/multimedia.nix
     ./modules/flatpak.nix
-    ./modules/claude-statusline.nix
     ./modules/nix-updater.nix
     ./modules/android.nix
+    ./modules/development.nix
   ];
 
   home = {

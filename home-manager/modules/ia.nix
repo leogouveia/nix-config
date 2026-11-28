@@ -10,6 +10,9 @@
     # Anthropic Claude Code
     unstablePkgs.claude-code
 
+    # Dependência dos hooks e da statusline do Claude gerenciados pelo yadm.
+    jq
+
     # GitHub Copilot CLI
     unstablePkgs.github-copilot-cli
 
@@ -29,5 +32,4 @@
     # Claude Desktop
     inputs.claude-desktop.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
-  programs.claude-statusline.enable = true;
 }

@@ -23,6 +23,17 @@
         IdentitiesOnly = true;
       };
 
+      oracle = {
+        HostName = "150.136.210.86";
+        User = "ubuntu";
+        # Manter o arquivo privado legado como opção até validar o 1Password.
+        IdentityFile = [
+          "~/.ssh/id_ed25519_oracle.pub"
+          "~/.ssh/id_ed25519_oracle"
+        ];
+        IdentitiesOnly = true;
+      };
+
       "*".IdentityAgent = "~/.1password/agent.sock";
     };
   };

@@ -1,4 +1,9 @@
-{ pkgs, inputs, ... }:
+{
+  pkgs,
+  inputs,
+  unstablePkgs,
+  ...
+}:
 
 let
   system = pkgs.stdenv.hostPlatform.system;
@@ -15,14 +20,18 @@ let
   zedPkgs = import inputs.zed-pkgs {
     inherit system;
   };
+
+  claudeAcp = pkgs.writeShellScriptBin "claude-agent-acp" ''
+    export CLAUDE_CODE_EXECUTABLE="${unstablePkgs.claude-code}/bin/claude"
+    exec "${pkgs.claude-agent-acp}/bin/claude-agent-acp" "$@"
+  '';
 in
 {
   programs.vscode = {
     enable = true;
     package = vscodePkgs.vscode;
-    profiles.default = (import ./vscode-settings.nix) // {
-      extensions = import ./vscode-extensions.nix vscodePkgs.vscode-extensions;
-    };
+    # Preferências e atalhos do perfil padrão são gerenciados pelo yadm.
+    profiles.default.extensions = import ./vscode-extensions.nix vscodePkgs.vscode-extensions;
   };
 
   # Não adicionar o VSCodium ao ambiente combinado
@@ -46,20 +55,15 @@ in
     enable = true;
     package = zedPkgs.zed-editor;
 
-    extensions = [
-      "nix"
-      "lua"
-      "nvim-nightfox"
-      "material-icon-theme"
-      "catppuccin-icons"
-    ];
-
+    # O yadm gerencia settings.json, incluindo auto_install_extensions.
     extraPackages = with pkgs; [
       nixd
       nixfmt
       ruff
+      stylua
+      opencode
+      zedPkgs.codex-acp
+      claudeAcp
     ];
-
-    userSettings = import ./zed-settings.nix { inherit pkgs zedPkgs; };
   };
 }
