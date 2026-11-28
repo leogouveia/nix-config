@@ -16,7 +16,6 @@
     ./modules/flatpak.nix
     ./modules/nix-updater.nix
     ./modules/android.nix
-    ./modules/development.nix
   ];
 
   home = {

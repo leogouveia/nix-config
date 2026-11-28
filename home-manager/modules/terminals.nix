@@ -1,5 +1,31 @@
 { pkgs, inputs, ... }:
 
+let
+  ghosttyConfigMime =
+    pkgs.runCommand "ghostty-config-mime"
+      {
+        nativeBuildInputs = [ pkgs.shared-mime-info ];
+      }
+      ''
+        mkdir -p "$out/share/mime/packages" "$out/share/applications"
+        cat > "$out/share/mime/packages/ghostty-config.xml" <<'EOF'
+        <?xml version="1.0" encoding="UTF-8"?>
+        <mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
+          <mime-type type="text/x-ghostty-config">
+            <comment>Ghostty configuration</comment>
+            <sub-class-of type="text/plain"/>
+            <glob pattern="config.ghostty" weight="80"/>
+          </mime-type>
+        </mime-info>
+        EOF
+        XDG_DATA_DIRS="$out/share" update-mime-database "$out/share/mime"
+
+        cat > "$out/share/applications/mimeapps.list" <<'EOF'
+        [Default Applications]
+        text/x-ghostty-config=dev.zed.Zed.desktop;
+        EOF
+      '';
+in
 {
   # Emuladores de terminal
   home.packages = [ pkgs.ptyxis ];
@@ -111,7 +137,10 @@
     };
   };
 
-  # O yadm gerencia ~/.config/ghostty/config.
+  # Registra apenas config.ghostty, sem alterar o editor padrão de texto.
+  xdg.systemDirs.data = [ "${ghosttyConfigMime}/share" ];
+
+  # O yadm gerencia ~/.config/ghostty/config.ghostty.
   programs.ghostty = {
     enable = true;
     package = inputs.ghostty-pkgs.packages.${pkgs.stdenv.hostPlatform.system}.default;
