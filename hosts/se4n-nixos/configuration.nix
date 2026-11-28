@@ -14,6 +14,7 @@
     ./hardware-configuration.nix
     ./modules/fhs-compat.nix
     ./modules/fonts.nix
+    ./modules/plymouth.nix
   ];
 
   # Permitir pacotes proprietários
@@ -196,6 +197,12 @@
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
+
+  boot.initrd.kernelModules = [
+    "nvidia"
+    "nvidia_modeset"
+    "nvidia_drm"
+  ];
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.libinput.enable = true;
