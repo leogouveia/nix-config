@@ -176,7 +176,7 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.libinput.enable = true;
 
-  # irtualização
+  # Virtualização
   virtualisation.libvirtd.enable = true; # virt-manager (+ dnsmasq)
   programs.virt-manager.enable = true; # virt-manager
   # Lembrete: adicionar o usuário ao grupo "libvirtd" na etapa de usuários.
@@ -191,6 +191,7 @@
       "networkmanager"
       "wheel"
       "libvirtd"
+      "kvm"
     ]; # Enable ‘sudo’ for the user.
     shell = pkgs.fish;
   };
