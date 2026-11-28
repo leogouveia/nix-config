@@ -10,7 +10,7 @@
 
 {
   imports = [
-    # Include the results of the hardware scan.
+    # Include the results of the hardware scan.1
     ./hardware-configuration.nix
     ./modules/fhs-compat.nix
     ./modules/fonts.nix
@@ -134,6 +134,30 @@
   # Enable the GNOME Desktop Environment.
   services.displayManager.gdm.enable = true;
   services.desktopManager.gnome.enable = true;
+
+  services.accounts-daemon.enable = true;
+
+  systemd.services.gnome-user-avatar = {
+    description = "Configurar o avatar de leogouveia no GNOME";
+    wantedBy = [ "multi-user.target" ];
+    requires = [ "accounts-daemon.service" ];
+    after = [ "accounts-daemon.service" ];
+    serviceConfig.Type = "oneshot";
+
+    script = ''
+      uid="$(${pkgs.coreutils}/bin/id -u leogouveia)"
+      busctl=${pkgs.systemd}/bin/busctl
+
+      "$busctl" --system call \
+        org.freedesktop.Accounts /org/freedesktop/Accounts \
+        org.freedesktop.Accounts FindUserById x "$uid" >/dev/null
+
+      "$busctl" --system call \
+        org.freedesktop.Accounts "/org/freedesktop/Accounts/User$uid" \
+        org.freedesktop.Accounts.User SetIconFile \
+        s "${../../assets/avatar_profissional.png}"
+    '';
+  };
 
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";
