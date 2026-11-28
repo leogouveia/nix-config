@@ -90,12 +90,31 @@ git fetch
 
 O `git fetch` verifica o acesso de leitura pelo novo remote. Para publicar alterações com `git push`, a conta autenticada precisa ter permissão de escrita.
 
-## 6. Conferir o Zed
+## 6. Restaurar as configurações dos aplicativos com o yadm
 
-- [ ] Verificar se o Zed consegue acessar o repositório sem solicitar credenciais HTTPS.
-- [ ] Reconfigurar as credenciais dos provedores de IA no Zed, quando necessário.
+O Home Manager instala o `yadm`, os editores, as ferramentas de IA e suas dependências, incluindo o `jq` para os hooks e a statusline do Claude Code. Ele também continua gerenciando o SSH e as extensões declaradas para o perfil padrão do VS Code.
 
-## 7. Validações opcionais
+O `yadm` gerencia os arquivos versionados no repositório de dotfiles, como as preferências e os atalhos do VS Code, o `settings.json` do Zed (incluindo a lista de extensões instaladas automaticamente) e os hooks e a statusline do Claude Code. Faça alterações nesses arquivos no repositório de dotfiles, não no `nix-config`.
+
+- [ ] Revisar e aplicar a configuração do Home Manager e confirmar que a conta autenticada via SSH, com a chave do 1Password, tem acesso ao repositório privado de dotfiles.
+- [ ] Antes do clone, guardar uma cópia das preferências locais que deseja preservar, especialmente as do Zed, Claude Code e Codex.
+- [ ] Se já houver um repositório do `yadm` nesta home, conferir o remoto com `yadm remote -v` e a branch com `yadm branch --show-current` antes de atualizar, sem clonar novamente.
+- [ ] Caso ainda não haja um repositório do `yadm` nesta home, clonar como usuário normal:
+
+```bash
+yadm clone -b nixos git@github.com:leogouveia/dotfiles.git
+yadm status
+```
+
+O `-b nixos` seleciona a branch. O `yadm` restaura os arquivos em `~`, independentemente do diretório em que o comando for executado. Se houver colisões, revise os arquivos envolvidos e preserve as alterações locais antes de forçar qualquer restauração. Não versione credenciais nem tokens.
+
+## 7. Conferir os aplicativos
+
+- [ ] No VS Code, conferir as preferências e os atalhos restaurados pelo `yadm` e as extensões instaladas pelo Home Manager.
+- [ ] No Zed, conferir as preferências restauradas e verificar se o editor consegue acessar o repositório sem solicitar credenciais HTTPS. Reconfigurar as credenciais dos provedores de IA, quando necessário.
+- [ ] No Claude Code, conferir se a statusline aparece e se os hooks funcionam. Se houver falhas, verificar se `jq --version` funciona.
+
+## 8. Validações opcionais
 
 ### Partição de backups
 
@@ -147,7 +166,7 @@ vulkaninfo --summary
 gnome-text-editor
 ```
 
-## 8. Finalização
+## 9. Finalização
 
 - [ ] Revisar as alterações do host e do Home Manager.
 - [ ] Versionar as alterações desejadas no Git.
